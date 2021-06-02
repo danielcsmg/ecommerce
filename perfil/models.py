@@ -54,11 +54,11 @@ class Perfil(models.Model):
     def __str__(self):
         return f'{self.usuario.first_name} {self.usuario.last_name}'
 
-    def clean(self):
+    '''def clean(self):
         error_message = {}
 
         if not validacpf(self.cpf):
-            error_message['cpf'] = 'Digite um CPF válido.'
+            error_message['cpf'] = 'Digite um CPF válido.'''
 
 
     class Meta:
