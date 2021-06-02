@@ -13,3 +13,4 @@ class ProdutoAdmin(admin.ModelAdmin):
 
 admin.site.register(models.Produto)
 admin.site.register(models.Variacao)
+
