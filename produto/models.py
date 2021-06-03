@@ -3,6 +3,7 @@ from django.db import models
 from pathlib import Path
 from django.conf import settings
 from PIL import Image
+from django.utils.text import slugify
 
 class Produto(models.Model):
     nome = models.CharField(max_length=255)
@@ -48,6 +49,10 @@ class Produto(models.Model):
         print('Nova imagem')
 
     def save(self, *args, **kwargs):
+        if not self.slug:
+            slug = f'{slugify(self.nome)}-{self.pk}'
+            self.slug = slug
+
         super().save(*args, **kwargs)
 
         max_image_size = 800
