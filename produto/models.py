@@ -11,14 +11,14 @@ class Produto(models.Model):
     descricao_longa = models.TextField()
     imagem = models.ImageField(
         upload_to='produto_imagem/%Y/%m/', blank=True, null=True)
-    slug = models.SlugField(unique=True)
+    slug = models.SlugField(unique=True, blank=True, null=True)
     preco_marketing = models.FloatField()
     preco_marketing_procional = models.FloatField(default=0)
     tipo = models.CharField(
         default='V',
         max_length=1,
         choices=(
-            ('V', 'Variação'),
+            ('V', 'Variável'),
             ('S', 'Simples'),
         )
     )
@@ -52,6 +52,7 @@ class Produto(models.Model):
         if not self.slug:
             slug = f'{slugify(self.nome)}-{self.pk}'
             self.slug = slug
+            print(slug)
 
         super().save(*args, **kwargs)
 
