@@ -45,8 +45,13 @@ class Produto(models.Model):
         )
 
 
+    def get_preco_formatado(self):
+        return f'R$ {self.preco_marketing:.2f}'.replace('.',',')
+    get_preco_formatado.short_description = 'Preço'
 
-        print('Nova imagem')
+    def get_preco_promocional_formatado(self):
+        return f'R$ {self.preco_marketing_procional:.2f}'.replace('.',',')
+    get_preco_promocional_formatado.short_description = 'Preço Promocional'
 
     def save(self, *args, **kwargs):
         if not self.slug:
